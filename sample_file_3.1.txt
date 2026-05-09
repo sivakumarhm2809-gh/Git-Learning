@@ -1,1 +1,1 @@
-Sample file created for deletion
+Changes made, without committing, will try to delete this file.
