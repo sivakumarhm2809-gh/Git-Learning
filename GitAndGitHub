@@ -1,0 +1,73 @@
+Git and GitHub
+	--Git is a version control tool that keeps track your file(s) and stores different versions of it.
+	--GitHub ia a platform for colloborative remote storage.
+
+Git's Architecture
+	--It's primarily consists of 2 components.
+	--One being the remote repo and the other being the local repo.
+
+Local Repo => A repo, which you would be considering as 'working directory'.
+Remote Repo => A repo that resides inside the cloud, where changes from local repo will be pushed onto.
+
+Once, you have done your work on the 'working directory' and confident that everything can be saved now, you will be moving with the next stage of git workflow
+That's Staging.
+
+Here, you can review your changes and once be very confident, you commit all those changes to the 'local repo'.
+	--This commit would be stored as a version in your project's history.
+	
+Run 'git status' to know, what's the status difference between the local repo and the remote repo.
+
+Note: If you have created a new file/folder inside the working directory (local repo) and run the git status command, you will be seeing a status 'untracked'.
+		--To move all changes (creation, deletion, modification) to the staging area use 'git add -all' or 'git status -a'
+			--The above add comments wil stage the changes that had  happened across the entire working directory.
+		--'git add .' will only stage changes that have had happened only in the specific directory, you're in currently.
+		--'git add *' will stage only new and modified files and folders.
+		--to unstage the changes at the staging area, use 'git reset'.
+			--There are two types of unstages.
+				--git reset will unstage the staged changes and changes the file to the last commit state, if we are talking about file modification.
+				--if we are talking about file deletion, git reset will only unstage the deletion, it wouldn't bring back the file to the working dir, to do that use git reset --hard
+		
+'git reset HEAD~' can revert back a commit, straight to the working directory.
+	--You then needs to re-stage it and re-commit it.
+	
+You can delete a file, stage the deletion.
+	--To avoid all this hassle, try git rm <file_name>
+	
+Assume you have modified a file in your working directory and without commiting it, if you try to delete it, you would be thrown with an error.
+
+To view the commit log use the command, 'git log'.
+
+Branch = A seperate line of development.
+	--Main Branch = Central line of development.
+	
+NEEDS TO UNDERSTAND THE MERGE CONFLICT SECTION AGAIN. [REWATCH NEEDED]
+
+You can compare the differences between the commits with the help of 'git diff <commit hash 1> <commit hash 2>'
+
+Git FETCH vs Git PULL
+	--FETCH, fetches the changes from remote repo and stores it into your system memory, but won't be reflected in the working dir/local repo.
+	--PULL = FETCH + MERGE.
+	
+GIT RESTORE.
+	--Helps you revert any file/folder to it's previous commit state. 
+	(Either from a current commit or from the current un-commited changes.)
+	--Different versions of git restore.
+		--git restore <file name> ==> to restore a file.
+		--git restore <directory name> ==> to restore every file within a directory.
+		--git restore . ==> restore all files in the working directory to it's previous state.
+		
+GIT Branching
+	--Instead of working directly in the main branch (which is a project's central line of development), you would be creating and working on feature and development branches.
+	--Once the testing and development is done on the feature/development branch, you merge it with the main branch.
+	--Merging = Combining changes from multiple branches into one.
+	--In the example shown, the development and the main had changes and both had been commited.
+		--Now 1st main branch has to be merged with development.
+			--git merge main -m "Merging main into development"
+		--Now checkout to the main branch, do the same.
+			--git merge main -m "Merging development into main"
+	--Sometimes, during merge, conflicts may occur.
+		--MERGE CONFLICT = same part of the same file have been changed in two seperate branches.
+	--MERGE CONFLICT(s) have to be resolved manually.
+	--two branches from Main -> Staging and Development.
+	--changed the same file, staged it and commited it.
+	--tried merging staging with development.
